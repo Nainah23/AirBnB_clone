@@ -15,6 +15,5 @@ class HBNBCommand(cmd.Cmd):
         """Signifies end-of-file"""
         print()
         return True
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
