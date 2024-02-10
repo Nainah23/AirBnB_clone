@@ -2,9 +2,9 @@
 """Write a class BaseModel"""
 
 from datetime import datetime, timezone
+from models import storage
 import uuid
 import json
-
 
 class BaseModel:
     """defines all common attributes/methods for other classes"""
@@ -14,6 +14,9 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now(timezone.utc)
             self.updated_at = datetime.now(timezone.utc)
+
+            """Add the new instance to storage"""
+            storage.new(self)
         else:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
@@ -28,6 +31,8 @@ class BaseModel:
     def save(self):
         """updates the updated_at attribute with the current time"""
         self.updated_at = datetime.now(timezone.utc)
+        """Save the updated instance to storage"""
+        storage.save()
 
     def to_dict(self):
         """reates a dictionary representation of the object with the necessary format."""
