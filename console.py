@@ -3,7 +3,7 @@
 import cmd
 
 class HBNBCommand(cmd.Cmd):
-    """My custom console class"""
+    """Our custom console class"""
     prompt = "(hbnb) "
 
     def do_quit(self, args):
