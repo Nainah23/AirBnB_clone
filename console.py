@@ -23,13 +23,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, args):
-        """Quits the program"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, args):
         """Signifies end-of-file"""
         print()
         return True
+    def do_emptyline(self, args):
+        """Overrides the empty line"""
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
