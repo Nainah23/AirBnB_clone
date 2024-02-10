@@ -23,8 +23,8 @@ The project is structured as follows:
 4. **Create BaseModel from Dictionary**
    - Enhance the `BaseModel` class to recreate an instance from a dictionary representation.
 
-5. **Store First Object**
-   - Introduce a class `FileStorage` to serialize instances to a JSON file and deserialize JSON files to instances.
+    5. **Store First Object**
+    - Introduce a class `FileStorage` to serialize instances to a JSON file and deserialize JSON files to instances.It will provide methods to save and reload objects, ensuring persistence across program launches.
 
 6. **Console 0.0.1**
    - Develop a command-line interface (`console.py`) using the `cmd` module with basic functionalities:
