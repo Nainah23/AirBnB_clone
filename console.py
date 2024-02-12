@@ -34,21 +34,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """
-        quit commande to EXIT the program
+        Quits the program.
         """
         return True
 
     def do_EOF(self, line):
         """
-        Ctrl+d commande to Exit the program
+        Quits the program.
         """
         print("")
         return True
 
     def emptyline(self):
-        """
-        an empty line + ENTER shoudn't execute anything
-        """
+        """Called when an empty line is entered"""
         pass
 
     def do_help(self, arg):
@@ -59,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """
-        create new instance
+        cCreates a new instance of a specified class
         """
         args = arg.split(" ")
         if len(args) == 0:
@@ -139,35 +137,37 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        Updates an instance
+        Updates an instance based on the class name and id by adding or updating attribute.
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args = arg.split()
-        objects = storage.all()
+
         if len(args) == 0:
             print("** class name missing **")
             return
-        if args[0] not in classes.keys():
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
-        if len(args) < 2:
+        if len(args) == 1:
             print("** instance id missing **")
             return
-        if len(args) < 3:
-            print("** attribute name missing **")
-            return
-        if len(args) < 4:
-            print("** value missing **")
-            return
-        key = "{}.{}".format(args[0], args[1])
-        instances = objects.get(key, None)
-        if instances is None:
+
+        objs = storage.all()
+        key = args[0] + "." + args[1]
+
+        if key not in objs:
             print("** no instance found **")
             return
-        """if not isinstance(args[3], (str, int, float)):
-            print("** only simple arguments can be updated **")
-            return"""
-        setattr(instances, args[2], args[3].lstrip('"').rstrip('"'))
-        storage.save()
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
+
+        obj = objs[key]
+        setattr(obj, args[2], args[3].strip('"'))
+        obj.save()
 
     def do_count(self, arg):
         """count  the number of instances of a given class."""
