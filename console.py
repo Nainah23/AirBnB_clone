@@ -127,11 +127,15 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 1:
             print(["{}".format(v) for _, v in objects.items()])
             return
-        if args[0] not in classes.keys():
+
+        class_name = args[0]
+        if class_name not in classes.keys():
             print("** class doesn't exist **")
             return
-        else:
-            print(["{}".format(v) for _, v in objects.items()])
+
+        """Retrieve all instances of the specified class"""
+        class_instances = classes[class_name].all()
+        print(["{}".format(instance) for instance in class_instances])
 
     def do_update(self, arg):
         """
