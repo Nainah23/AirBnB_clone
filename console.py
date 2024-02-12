@@ -19,7 +19,9 @@ Methods:
      - Deletes an instance based on the class name and id (save the change into the JSON file). Ex: $ destroy BaseModel 1234-1234-1234.
     def do_all(self, arg):
      - Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel 
-
+    def do_update(self, arg):
+     - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com". 
+     
 Usage:
     Execute this script to start the AirBnB console. Type 'help' for available commands.
 """
@@ -140,6 +142,41 @@ class HBNBCommand(cmd.Cmd):
             return
 
         print([str(objs[key]) for key in objs if key.startswith(args[0] + ".")])
+
+    def do_update(self, arg):
+        """
+        Updates an instance based on the class name and id by adding or updating attribute.
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
+        args = arg.split()
+
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+
+        objs = storage.all()
+        key = args[0] + "." + args[1]
+
+        if key not in objs:
+            print("** no instance found **")
+            return
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
+
+        obj = objs[key]
+        setattr(obj, args[2], args[3].strip('"'))
+        obj.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
