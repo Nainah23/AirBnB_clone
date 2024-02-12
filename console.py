@@ -1,17 +1,27 @@
 #!/usr/bin/python3
 """
-Module:console.py
+console.py
 """
 
 import cmd
 import re
 from models import storage
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
 from models.user import User
+from models.state import State
 
 classes = {
     "BaseModel": BaseModel,
     "User": User,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Place": Place,
+    "Review": Review,
 }
 
 

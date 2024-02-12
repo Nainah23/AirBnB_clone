@@ -14,8 +14,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """
-        initalisation of an object with it's
-        attributes
+        initalisation of an object with it's attributes
         Args :
                 Args(won't be used ): list of arguments
                 Kwargs: pass in dictionary as arguments
@@ -35,7 +34,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        return the string of instences
+        return the string of instances
         """
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
@@ -48,7 +47,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-        to_dict methode
+        to_dict method
         """
         dict = self.__dict__.copy()
         dict["__class__"] = self.__class__.__name__
