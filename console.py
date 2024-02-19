@@ -69,7 +69,6 @@ class HBNBCommand(cmd.Cmd):
             new_instance = classes[args[0]]()
             new_instance.save()
             print(new_instance.id)
-
     def do_show(self, arg):
         """
         Show an instance with ID
