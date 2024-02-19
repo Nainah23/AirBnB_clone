@@ -147,4 +147,4 @@ No inline styling; styles are applied using external CSS files.
 Repository Information
 GitHub Repository: AirBnB_clone
 Directory: web_static
-Files: 103-index.html, styles/103-common.css, styles/103-header.css, styles/103-footer.css, styles/103-filters.css, styles/103-places.css, images/
+Files: 103-index.html styles/103-common.css, styles/103-header.css, styles/103-footer.css, styles/103-filters.css, styles/103-places.css, images/
